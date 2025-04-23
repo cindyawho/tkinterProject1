@@ -9,6 +9,14 @@ root = tk.Tk()
 root.geometry("500x500")
 root.config(background = "Black") 
 
+# Successful attempt on online compiler
+bg = tk.PhotoImage(file="space.png")
+background_label = tk.Label(root, image=bg)
+background_label.place(x=0, y=0, relwidth=1, relheight=1)
+
+# bg = ImageTk.PhotoImage(Image.open("space.png"))
+# root.create_image(0, 0, anchor=NW, image=bg)
+
 #  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #  ~~~~~~~~~~~~~~~ FUNCTIONS ~~~~~~~~~~~~~~~
 #  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -57,7 +65,7 @@ languageText = tk.Label(root,
 languageText.pack(pady=20)
 
 userLanguage = ttk.Combobox(root)
-userLanguage['values'] = ["Galactic Basic Standard", "Greek", "Huttese", "Mando’a", "Shyriiwook", "Spanish"]
+userLanguage['values'] = ["Galactic Basic Standard", "Greek", "Huttese", "Mando'a", "Shyriiwook", "Spanish"]
 userLanguage.current(0) 
 userLanguage.pack()
 
@@ -66,7 +74,12 @@ submit = tk.Button(root, text = "Greet Me", command = submitForm)
 submit.pack(pady=(50, 30))
 
 # ----- Output Section
-output = tk.Label(root, text = "")
+output = tk.Label(  root, 
+                    text = "",
+                    bg = "black",
+                    fg = "white",
+                    font = ("Arial", 16)
+                  )
 output.pack()
 
 root.mainloop()

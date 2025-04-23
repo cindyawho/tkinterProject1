@@ -1,6 +1,10 @@
 # tkinterProject1
 Built using CIS 112 concepts
 
+## LeverApp
+
+My very first tkinter App to create a GUI!
+Inspired by the Emperor's New Groover, users can input their names, and be asked to pull the lever!
 
 ## Greeting Assignment
 

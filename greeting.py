@@ -2,8 +2,24 @@ import tkinter as tk
 
 root = tk.Tk()
 
+def submitForm():
+    userName = name.get()
+
+    output.config(text=f'Hello, {userName}')
+
 nameText = tk.Label(root, text = "Hello rebel. What should we call you?")
 nameText.pack()
+
+name = tk.Entry(root)
+name.pack()
+
+submit = tk.Button(root, text = "Submit", command = submitForm)
+submit.pack()
+
+output = tk.Label(root, text = "")
+output.pack()
+
+root.mainloop()
 
 # Greeting Application Guidelines
 

@@ -7,12 +7,23 @@ root = tk.Tk()
 #  ~~~~~~~~~~~~~~~ FUNCTIONS ~~~~~~~~~~~~~~~
 #  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+languageDict = {
+                "Huttese": "H'chu apenkee", 
+                "Mando'a" : "Su'cuy'gar",
+                "Galactic Basic Standard": "Hello",
+                "Shyriiwook" : "Wyaaaaaa",
+                "Greek" : "Yassou",
+                "Spanish" : "Hola"
+                }
+
 def submitForm():
     userName = name.get()
     if userName == "":
         output.config(text=f'Please input a name.')
     else:
-        output.config(text=f'Hello, {userName}')
+        userLang = userLanguage.get()
+        greeting = languageDict[userLang]
+        output.config(text=f'{greeting}, {userName}')
 
 #  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #  ~~~~~~~~~~~~~~ Start of UI ~~~~~~~~~~~~~~

@@ -28,8 +28,17 @@ languageDict = {
                 "Mando'a" : "Su'cuy'gar",
                 "Galactic Basic Standard": "Hello",
                 "Shyriiwook" : "Wyaaaaaa",
-                "Greek" : "Yassou",
+                "Greek" : "Γειά σου",
                 "Spanish" : "Hola"
+                }
+
+resistanceDict = {
+                "Huttese": "Chuba kava doth wa Resistance",
+                "Mando'a": "Olarom at te Werda",
+                "Galactic Basic Standard": "Welcome to the Resistance",
+                "Shyriiwook": "Wyaaaaaa raaaaaahhgh raaaaaawwwr",
+                "Greek": "Καλώς ήρθες στην Αντίσταση",
+                "Spanish": "Bienvenido a la Resistencia"
                 }
 
 def submitForm():
@@ -39,7 +48,7 @@ def submitForm():
     else:
         userLang = userLanguage.get()
         greeting = languageDict[userLang]
-        output.config(text=f'{greeting}, {userName}\n Welcome to the resistance.')
+        output.config(text=f'{greeting}, {userName}\n {resistanceDict[userLang]}')
 
 #  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #  ~~~~~~~~~~~~~~ Start of UI ~~~~~~~~~~~~~~

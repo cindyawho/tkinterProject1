@@ -9,8 +9,10 @@ root = tk.Tk()
 
 def submitForm():
     userName = name.get()
-
-    output.config(text=f'Hello, {userName}')
+    if userName == "":
+        output.config(text=f'Please input a name.')
+    else:
+        output.config(text=f'Hello, {userName}')
 
 #  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #  ~~~~~~~~~~~~~~ Start of UI ~~~~~~~~~~~~~~
@@ -38,7 +40,7 @@ userLanguage.pack()
 # Shyriiwook is "Wyaaaaaa
 
 # ----- Submit
-submit = tk.Button(root, text = "Submit", command = submitForm)
+submit = tk.Button(root, text = "Greet Me", command = submitForm)
 submit.pack()
 
 # ----- Output Section

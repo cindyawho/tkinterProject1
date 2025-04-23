@@ -14,8 +14,22 @@ bg = tk.PhotoImage(file="space.png")
 background_label = tk.Label(root, image=bg)
 background_label.place(x=0, y=0, relwidth=1, relheight=1)
 
+## Failed Attempt trying to import PIL
 # bg = ImageTk.PhotoImage(Image.open("space.png"))
 # root.create_image(0, 0, anchor=NW, image=bg)
+
+# Button Hovering Time!
+style = ttk.Style()
+style.configure("Greet.TButton", background="white", foreground="black", font=("Arial", 10))
+style.map("Greet.TButton", background=[("active", "#E066FF")])
+
+## Failed Attempt using functions bc Mac doesnt like tkinter
+# def onHover(e):
+#     submit["background"] = "#E066FF"
+#     print("onHover!!")
+# def offHover(e):
+#     submit["background"] = "white"
+#     print("Off Hover!")
 
 #  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #  ~~~~~~~~~~~~~~~ FUNCTIONS ~~~~~~~~~~~~~~~
@@ -70,8 +84,10 @@ userLanguage.current(0)
 userLanguage.pack()
 
 # ----- Submit
-submit = tk.Button(root, text = "Greet Me", command = submitForm)
+submit = ttk.Button(root, text="Greet Me", command=submitForm, style="Greet.TButton")
 submit.pack(pady=(50, 30))
+# submit.bind("<Enter>", onHover)
+# submit.bind("<Leave>", offHover)
 
 # ----- Output Section
 output = tk.Label(  root, 

@@ -1,27 +1,55 @@
 import tkinter as tk
+from tkinter import ttk
 
 root = tk.Tk()
+
+#  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#  ~~~~~~~~~~~~~~~ FUNCTIONS ~~~~~~~~~~~~~~~
+#  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 def submitForm():
     userName = name.get()
 
     output.config(text=f'Hello, {userName}')
 
-nameText = tk.Label(root, text = "Hello rebel. What should we call you?")
+#  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#  ~~~~~~~~~~~~~~ Start of UI ~~~~~~~~~~~~~~
+#  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# ----- Name Section
+nameText = tk.Label(root, text = "Welcome to the resistance. What should we call you rebel?")
 nameText.pack()
 
 name = tk.Entry(root)
 name.pack()
 
+# ----- Language Section
+languageText = tk.Label(root, text = "Which language do you prefer?")
+languageText.pack()
+
+userLanguage = ttk.Combobox(root)
+userLanguage['values'] = ["Galactic Basic Standard", "Greek", "Huttese", "Mando’a", "Shyriiwook", "Spanish"]
+userLanguage.current(0) 
+userLanguage.pack()
+
+# Huttese: "H'chu apenkee"
+# Mando'a: "Su'cuy'gar" 
+# Galactic Basic Standard: Hello
+# Shyriiwook is "Wyaaaaaa
+
+# ----- Submit
 submit = tk.Button(root, text = "Submit", command = submitForm)
 submit.pack()
 
+# ----- Output Section
 output = tk.Label(root, text = "")
 output.pack()
 
 root.mainloop()
 
-# Greeting Application Guidelines
+#  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#  ~~~~ Greeting Application Guidelines ~~~~
+#  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # The objective of this assignment is to create a 
 # simple greeting application using Python's Tkinter library. 

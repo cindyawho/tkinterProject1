@@ -1,8 +1,17 @@
 import tkinter as tk
 
+root = tk.Tk()
+
+nameText = tk.Label(root, text = "Hello rebel. What should we call you?")
+nameText.pack()
+
 # Greeting Application Guidelines
 
-# The objective of this assignment is to create a simple greeting application using Python's Tkinter library. The application should allow users to input their name, select their preferred language for the greeting, and display a personalized greeting message.
+# The objective of this assignment is to create a 
+# simple greeting application using Python's Tkinter library. 
+# The application should allow users to input their name, 
+# select their preferred language for the greeting, 
+# and display a personalized greeting message.
 
 # Requirements:
 

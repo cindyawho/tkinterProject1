@@ -8,13 +8,14 @@ Inspired by the Emperor's New Groover, users can input their names, and be asked
 
 ## Greeting Assignment
 
+### Objective
 The objective of this assignment is to create a 
 simple greeting application using Python's Tkinter library. 
 The application should allow users to input their name, 
 select their preferred language for the greeting, 
 and display a personalized greeting message.
 
-Requirements:
+### Requirements:
 
 1. Create a GUI application using Tkinter that includes the following components:
    - Label prompting the user to enter their name.
@@ -29,7 +30,7 @@ Requirements:
 3. Apply styling and formatting to the GUI components to enhance the visual appeal of the application:
    - Use appropriate font styles, sizes, and colors for labels, entry widgets, combobox, button, and greeting message.
 
-Scoring Rubric:
+### Scoring Rubric:
 
 1. GUI Components (3 points):
    - Label prompting the user to enter their name.
@@ -51,3 +52,44 @@ Scoring Rubric:
 
 
 *Note: Bonus points may be awarded for implementing additional features or enhancements beyond the basic requirements.*
+
+## Weather App
+
+This was the first app I used grid() and tk.PhotoImage for. At the moment of this commit, only the front-end and hard-coded examples have been made. By the end though, this app will call an API to get current weather in different locations. 
+
+
+## Ordering Kiosk
+
+### Objective
+Your task is to develop an ordering kiosk application using the Tkinter library in Python. The application should allow customers to enter their name, choose whether to add a drink to their order, select an entree from the provided options, and display their order details upon submission. Utilizing a theme for the application is optional but will earn extra credit.
+
+### Requirements:
+
+1. Create an `OrderingKiosk` class that represents the application.
+2. The application should have the following features:
+- Entry widget for customers to enter their name. 
+- Checkbutton to allow customers to choose whether to add a drink to their order
+- Combobox with options for entrees (e.g., Pizza, Burger, Salad)
+- Button to submit the order  
+- Label to display the order details upon submission.
+3. Display the order details, including the customer's name, drink choice (if selected), and selected entree, upon clicking the submit button.
+4. Implement proper error handling to display a message if the customer's name is not provided or if no entree is selected upon submission.
+
+### Scoring Rubric:
+
+1. Class Structure (2 points):
+  - Properly define the `OrderingKiosk` class with all necessary methods and attributes.
+2. Widget Functionality (4 points):
+  - Entry widget captures customer name.
+  - Checkbutton allows customers to choose whether to add a drink to their order.
+  - Combobox provides options for selecting an entree.
+  - Button triggers the submission of the order and displays order details.
+3. Error Handling (2 points):
+  - Proper error message is displayed if the customer's name is not provided upon submission.
+  - Proper error message is displayed if no entree is selected upon submission.
+4. Code Quality (2 points):
+  - Code is well-structured, organized, and easy to understand.
+  - Proper use of Tkinter widgets and methods.
+  - Comments are included to explain the purpose of major code sections.
+5. Extra Credit (2 point):
+  - Utilization of a theme for the application interface.

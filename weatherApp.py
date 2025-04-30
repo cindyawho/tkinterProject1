@@ -1,6 +1,22 @@
 import tkinter as tk
 from tkinter import ttk
 
+# Utility Functions
+def updateWeather():
+    location = locationEntry.get()
+    if location.lower() == "pasadena":
+        weatherLabel.config(text=f"Current Weather in {location}: Sunny") 
+        weatherImage.config(image=sunImage)
+        highTempLabel.config(text=f"High: 82")
+        lowTempLabel.config(text=f"Low: 65")
+    elif location.lower() == "seattle":
+        weatherLabel.config(text=f"Current Weather in {location}: Rainy") 
+        weatherImage.config(image=rainImage)
+        highTempLabel.config(text=f"High: 65")
+        lowTempLabel.config(text=f"Low: 45")
+    else:
+        weatherLabel.config(text=f"Error: {location} not found. Please enter a Valid Location.")
+
 # Main App Information
 root = tk.Tk() 
 root.title("PCC Weather App")
@@ -14,7 +30,7 @@ locationLabel.grid(row=0, column=0)
 locationEntry = tk.Entry(root)
 locationEntry.grid(row=0, column=1, padx=10)
 
-updateButton = tk.Button(root, text="Find Weather")
+updateButton = tk.Button(root, text="Find Weather", command=updateWeather)
 updateButton.grid(row=0, column=2)
 
 # Second Row: text and image

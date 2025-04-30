@@ -50,9 +50,9 @@ lowTempLabel.grid(row=2, column=2, columnspan=2)
 
 #Images:
 sunImage = tk.PhotoImage(file="sun.png")
-sunImage = sunImage.subsample(16)
+sunImage = sunImage.subsample(4)
 
 rainImage = tk.PhotoImage(file="rain.png")
-rainImage = rainImage.subsample(16)
+rainImage = rainImage.subsample(10)
 
 root.mainloop()

@@ -32,4 +32,11 @@ highTempLabel.grid(row=2, column=0, columnspan=2)
 lowTempLabel = tk.Label(root, text="Low: N/A")
 lowTempLabel.grid(row=2, column=2, columnspan=2)
 
+#Images:
+sunImage = tk.PhotoImage(file="sun.png")
+sunImage = sunImage.subsample(16)
+
+rainImage = tk.PhotoImage(file="rain.png")
+rainImage = rainImage.subsample(16)
+
 root.mainloop()

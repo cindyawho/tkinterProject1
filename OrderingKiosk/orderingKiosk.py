@@ -29,11 +29,22 @@ class OrderingKiosk():
 
         self.button = ttk.Button(self.root, text="Order", command=self.order)
         self.button.grid(row=5, column=0, columnspan=3, padx=10)
+
+        self.nameResultLabel = ttk.Label(self.root, text="")
+        self.nameResultLabel.grid(row=6, column=0, columnspan=5, padx=10, pady=10)
     
     def checkName(self):
-        customerName = OrderingKiosk.nameEntry.get()
+        customerName = self.nameEntry.get()
+        if customerName == "":
+            self.nameResultLabel.config(text="Error: Please Enter a Name.", foreground="red")
+            return False
+        else:
+            return customerName
+    
     def order(self):
         print("Customer ordered")
+        self.nameResultLabel.config(text="Order Processing...", foreground="blue")
+        name = self.checkName()
 
 app = OrderingKiosk(root)
 root.mainloop()

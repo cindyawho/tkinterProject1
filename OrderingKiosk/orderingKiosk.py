@@ -1,6 +1,7 @@
 import tkinter as tk
 from ttkthemes import ThemedTk # type: ignore
 from tkinter import ttk
+import time # for fun :)
 
 # Main App Information
 root = ThemedTk(theme="radiance")
@@ -36,6 +37,7 @@ class OrderingKiosk():
     def checkName(self):
         customerName = self.nameEntry.get()
         if customerName == "":
+            time.sleep(2)
             self.nameResultLabel.config(text="Error: Please Enter a Name.", foreground="red")
             return False
         else:
@@ -44,6 +46,7 @@ class OrderingKiosk():
     def order(self):
         print("Customer ordered")
         self.nameResultLabel.config(text="Order Processing...", foreground="blue")
+        self.nameResultLabel.update_idletasks()  # force update, otherwise mainloop keeps going and won't show order processing bit
         name = self.checkName()
 
 app = OrderingKiosk(root)

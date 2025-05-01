@@ -16,6 +16,9 @@ def updateWeather():
         lowTempLabel.config(text=f"Low: 45")
     else:
         weatherLabel.config(text=f"Error: {location} not found. Please enter a Valid Location.")
+        weatherImage.config(image="")
+        highTempLabel.config(text=f"High:")
+        lowTempLabel.config(text=f"Low:")
 
 # Main App Information
 root = tk.Tk() 

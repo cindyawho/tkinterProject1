@@ -32,13 +32,25 @@ class OrderingKiosk():
         self.button = ttk.Button(self.root, text="Order", command=self.order)
         self.button.grid(row=5, column=0, columnspan=3, padx=10)
 
-        # Error Handling
+        # Error Handling and Results
         self.nameResultLabel = ttk.Label(self.root, text="")
-        self.nameResultLabel.grid(row=6, column=0, columnspan=5, padx=10, pady=10)
+        self.nameResultLabel.grid(row=6, column=0, columnspan=3, padx=10, pady=10)
 
         self.foodResultLabel = ttk.Label(self.root, text="")
-        self.foodResultLabel.grid(row=7, column=0, columnspan=5, padx=10, pady=10)
-    
+        self.foodResultLabel.grid(row=7, column=0, columnspan=3, padx=10, pady=10)
+
+        # Image
+        foodImage = ttk.Label(root, image="/images/albondigas.webp")
+        foodImage.grid(row=6, column=3)
+
+        # Images
+        # albondigasImage = tk.PhotoImage(file="albondigas.webp")
+        # albondigasImage = albondigasImage.subsample(4)
+        # imageDict: {
+        #     "albondigas": albondigasImage
+        # }
+
+    # Functions
     def checkName(self):
         customerName = self.nameEntry.get()
         if customerName == "":
@@ -72,7 +84,7 @@ class OrderingKiosk():
             self.nameResultLabel.update_idletasks()
             time.sleep(2)
             self.foodResultLabel.config(text=f"Here's your {entree}!", foreground="green")
-            self.foodResultLabel.update_idletasks()
+            self.foodImage.config(image=tk.PhotoImage(file=f"{entree}.webp"))
 
 app = OrderingKiosk(root)
 root.mainloop()

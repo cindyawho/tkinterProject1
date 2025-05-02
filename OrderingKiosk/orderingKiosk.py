@@ -45,7 +45,7 @@ class OrderingKiosk():
         pil_image = Image.open("OrderingKiosk/images/plate.webp").resize((200, 150), Image.LANCZOS)
         self.food_image = ImageTk.PhotoImage(pil_image)
         self.foodImage = ttk.Label(root, image=self.food_image)
-        self.foodImage.grid(row=6, column=3)
+        self.foodImage.grid(row=6, column=3, rowspan=2)
 
     # ~~~~~~~~~ Functions ~~~~~~~~~~~
     # Error Handling for name and entree
@@ -74,9 +74,11 @@ class OrderingKiosk():
 
     # Main Ordering Function
     def order(self):
-        # reset text to erase weird overlapping label texts
+        # reset text and image to erase weird overlapping label texts
         self.nameResultLabel.config(text="                                                     ")
         self.foodResultLabel.config(text="                                                     ")
+        foodImg = self.createImage("plate")
+        self.foodImage.config(image=foodImg)
         self.nameResultLabel.update_idletasks()
 
         print("Customer ordered")
@@ -86,10 +88,10 @@ class OrderingKiosk():
         name = self.checkName()
         entree = self.checkEntree()
         if name and entree:
-            self.nameResultLabel.config(text=f"Thank you {name}. Your order is coming up shortly!", foreground="green")
+            self.nameResultLabel.config(text=f"Your order is coming up shortly!", foreground="green")
             self.nameResultLabel.update_idletasks()
             time.sleep(2)
-            self.foodResultLabel.config(text=f"Here's your {entree}!", foreground="green")
+            self.foodResultLabel.config(text=f"Here's your {entree}, {name}!", foreground="green")
             foodImg = self.createImage(entree)
             self.foodImage.config(image=foodImg)
 

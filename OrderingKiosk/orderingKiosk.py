@@ -22,7 +22,7 @@ class OrderingKiosk():
         self.nameEntry = ttk.Entry(self.root)
         self.nameEntry.grid(row=1, column=1, padx=10)
 
-        # Ordering Details
+        # ~~~~~~~~Ordering Details~~~~~~~~~
         self.foodLabel = ttk.Label(self.root, text="Entree: ")
         self.foodLabel.grid(row=2, column=0, padx=10, pady=20)
 
@@ -30,6 +30,14 @@ class OrderingKiosk():
         self.foodOption['values'] = ["", "Albondigas", "Burger", "Lasagna", "Pad See Ew", "Pizza", "Pupusa", "Quesadilla"]
         self.foodOption.current(0)
         self.foodOption.grid(row=2, column=1, padx=10)
+
+        self.wantsDrink = tk.BooleanVar()
+        self.checkbox = ttk.Checkbutton(
+            root,
+            text='Add Drink',
+            variable=self.wantsDrink
+        )
+        self.checkbox.grid(row = 2, column=2, padx=10)
 
         self.button = ttk.Button(self.root, text="Order", command=self.order)
         self.button.grid(row=5, column=0, columnspan=3, padx=10)
@@ -41,11 +49,21 @@ class OrderingKiosk():
         self.foodResultLabel = ttk.Label(self.root, text="")
         self.foodResultLabel.grid(row=7, column=0, columnspan=3, padx=10, pady=10)
 
-        # Image
+        # Images
+        pil_Kiosk = Image.open("OrderingKiosk/images/kiosk.jpg").resize((400, 250), Image.LANCZOS)
+        self.kiosk_image = ImageTk.PhotoImage(pil_Kiosk)
+        self.kioskImage = ttk.Label(root, image=self.kiosk_image)
+        self.kioskImage.grid(row=0, column=3, rowspan=5, columnspan=2)
+
         pil_image = Image.open("OrderingKiosk/images/plate.webp").resize((200, 150), Image.LANCZOS)
         self.food_image = ImageTk.PhotoImage(pil_image)
         self.foodImage = ttk.Label(root, image=self.food_image)
         self.foodImage.grid(row=6, column=3, rowspan=2)
+
+        self.pil_drink = Image.open("OrderingKiosk/images/square.jpg").resize((150, 150), Image.LANCZOS)
+        self.drink_image = ImageTk.PhotoImage(self.pil_drink)
+        self.drinkImage = ttk.Label(root, image=self.drink_image)
+        self.drinkImage.grid(row=6, column=4, rowspan=2)
 
     # ~~~~~~~~~ Functions ~~~~~~~~~~~
     # Error Handling for name and entree
@@ -71,14 +89,28 @@ class OrderingKiosk():
         pil_image = Image.open(f"OrderingKiosk/images/{entree}.webp").resize((200, 150), Image.LANCZOS)
         self.food_image = ImageTk.PhotoImage(pil_image)
         return self.food_image
+    
+    # Create image if user wants drink
+    def createDrinkImage(self):
+        if self.wantsDrink.get():
+            pil_image = Image.open(f"OrderingKiosk/images/drink.png").resize((200, 150), Image.LANCZOS)
+            self.drink_image = ImageTk.PhotoImage(pil_image)
+            return self.drink_image
+        else: 
+            pil_image = Image.open("OrderingKiosk/images/square.jpg").resize((150, 150), Image.LANCZOS)
+            self.drink_image = ImageTk.PhotoImage(pil_image)
+            return self.drink_image
 
     # Main Ordering Function
     def order(self):
         # reset text and image to erase weird overlapping label texts
-        self.nameResultLabel.config(text="                                                     ")
-        self.foodResultLabel.config(text="                                                     ")
+        # self.nameResultLabel.config(text="                                                     ")
+        # self.foodResultLabel.config(text="                                                     ")
         foodImg = self.createImage("plate")
         self.foodImage.config(image=foodImg)
+        self.foodImage.image = foodImg # Something about Garbage Collection - to read later!
+        self.drinkImage.config(image=self.drink_image)
+        self.drinkImage.image = self.drink_image # Something about Garbage Collection - to read later!
         self.nameResultLabel.update_idletasks()
 
         print("Customer ordered")
@@ -91,7 +123,9 @@ class OrderingKiosk():
             self.nameResultLabel.config(text=f"Your order is coming up shortly!", foreground="green")
             self.nameResultLabel.update_idletasks()
             time.sleep(2)
-            self.foodResultLabel.config(text=f"Here's your {entree}, {name}!", foreground="green")
+            drinkImg = self.createDrinkImage()
+            self.drinkImage.config(image=drinkImg)
+            self.foodResultLabel.config(text=f"Here's your {entree} meal, {name}!", foreground="green")
             foodImg = self.createImage(entree)
             self.foodImage.config(image=foodImg)
 

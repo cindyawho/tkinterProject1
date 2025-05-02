@@ -2,6 +2,7 @@ import tkinter as tk
 from ttkthemes import ThemedTk # type: ignore
 from tkinter import ttk
 import time # for fun :)
+from PIL import Image, ImageTk # pip install pillow
 
 # Main App Information
 root = ThemedTk(theme="radiance")
@@ -40,7 +41,9 @@ class OrderingKiosk():
         self.foodResultLabel.grid(row=7, column=0, columnspan=3, padx=10, pady=10)
 
         # Image
-        foodImage = ttk.Label(root, image="/images/albondigas.webp")
+        pil_image = Image.open("OrderingKiosk/images/albondigas.webp").resize((200, 150), Image.LANCZOS)
+        self.food_image = ImageTk.PhotoImage(pil_image)
+        foodImage = ttk.Label(root, image=self.food_image)
         foodImage.grid(row=6, column=3)
 
         # Images

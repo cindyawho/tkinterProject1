@@ -2,11 +2,12 @@ import tkinter as tk
 from ttkthemes import ThemedTk # type: ignore
 from tkinter import ttk
 import time # for fun :)
-from PIL import Image, ImageTk # pip install pillow
+from PIL import Image, ImageTk # type: ignore 
+# pip install pillow
 
 # Main App Information
 root = ThemedTk(theme="radiance")
-root.title("Ordering Kiosk")
+root.title("Cindy's Ordering Kiosk")
 
 class OrderingKiosk():
     def __init__(self, root):
@@ -41,19 +42,13 @@ class OrderingKiosk():
         self.foodResultLabel.grid(row=7, column=0, columnspan=3, padx=10, pady=10)
 
         # Image
-        pil_image = Image.open("OrderingKiosk/images/albondigas.webp").resize((200, 150), Image.LANCZOS)
+        pil_image = Image.open("OrderingKiosk/images/plate.webp").resize((200, 150), Image.LANCZOS)
         self.food_image = ImageTk.PhotoImage(pil_image)
-        foodImage = ttk.Label(root, image=self.food_image)
-        foodImage.grid(row=6, column=3)
+        self.foodImage = ttk.Label(root, image=self.food_image)
+        self.foodImage.grid(row=6, column=3)
 
-        # Images
-        # albondigasImage = tk.PhotoImage(file="albondigas.webp")
-        # albondigasImage = albondigasImage.subsample(4)
-        # imageDict: {
-        #     "albondigas": albondigasImage
-        # }
-
-    # Functions
+    # ~~~~~~~~~ Functions ~~~~~~~~~~~
+    # Error Handling for name and entree
     def checkName(self):
         customerName = self.nameEntry.get()
         if customerName == "":
@@ -70,6 +65,14 @@ class OrderingKiosk():
         else:
             return entreeName
     
+    # Create Image depending on entree
+    def createImage(self, entree):
+        if entree == "Pad See Ew": entree = "padSeeEw"
+        pil_image = Image.open(f"OrderingKiosk/images/{entree}.webp").resize((200, 150), Image.LANCZOS)
+        self.food_image = ImageTk.PhotoImage(pil_image)
+        return self.food_image
+
+    # Main Ordering Function
     def order(self):
         # reset text to erase weird overlapping label texts
         self.nameResultLabel.config(text="                                                     ")
@@ -87,7 +90,8 @@ class OrderingKiosk():
             self.nameResultLabel.update_idletasks()
             time.sleep(2)
             self.foodResultLabel.config(text=f"Here's your {entree}!", foreground="green")
-            self.foodImage.config(image=tk.PhotoImage(file=f"{entree}.webp"))
+            foodImg = self.createImage(entree)
+            self.foodImage.config(image=foodImg)
 
 app = OrderingKiosk(root)
 root.mainloop()

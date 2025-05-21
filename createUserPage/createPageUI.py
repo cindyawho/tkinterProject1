@@ -49,12 +49,21 @@ class CreatePage:
         self.checkbox.grid(row=5, column=0, columnspan=5, pady=20, padx=20)
 
         # User Inputs for CSS
-        self.bgColorLabel = ttk.Label(self.root, text="Background Label: ", style="text.TLabel")
+        self.bgColorLabel = ttk.Label(self.root, text="Background: ", style="text.TLabel")
         self.bgColorLabel.grid(row=6, column=0, columnspan=2, pady=20, padx=20)
         self.bgColorButton = ttk.Button(self.root, text='Select a BackgroundColor', command=self.changeColor)
         self.bgColorButton.grid(row=6, column=1, columnspan=3, pady=20, padx=20)
         self.colorLabel = ttk.Label(self.root, text=".   color   .", style="text.TLabel")
         self.colorLabel.grid(row=6, column=3, columnspan=2, pady=20, padx=20)
+
+        self.fontLabel = ttk.Label(self.root, text="Font Family: ", style="text.TLabel")
+        self.fontLabel.grid(row=7, column=0, columnspan=2, pady=20, padx=20)
+        self.fonts = ["Arial", "Comic Sans MS", "Courier New", "Impact", "Georgia", "Lexend", "MS Gothic"]
+        self.fontsCombobox = ttk.Combobox(root, values=self.fonts, font=("Arial", 12))
+        self.fontsCombobox.grid(row=7, column=1, columnspan=3, pady=20, padx=20)
+
+        self.submitButton = ttk.Button(self.root, text="Create my Website!", command=self.createWebsite)
+        self.submitButton.grid(row=8, column=0,columnspan=5, padx=20, pady=20)
 
     # ~~~~~~~~~~~~ Form Functions ~~~~~~~~~~~~~~~
     # color picker
@@ -71,15 +80,24 @@ class CreatePage:
         else:
             print("User will input their CSS Choices")
 
-    def writeFile():
-        with open('index.html', 'r+') as f:
-            sent1 = f.readline()
-            sent2 = f.readline()
-            f.write('\n')
-            f.write('<html></html>')
+    def createWebsite(self):
+        self.writeHTMLFile()
+        self.writeCSSFile()
+
+    # ~~~~~~~~~~~~ Writing File Functions ~~~~~~~~~~~~~~~
+    def writeHTMLFile(self):
+        print("Writing HTML File...")
+        # with open('index.html', 'r+') as f:
+        #     sent1 = f.readline()
+        #     sent2 = f.readline()
+        #     f.write('\n')
+        #     f.write('<html></html>')
         # OR ...
         # f = open('index.html') # open html file
         # f.close()
+
+    def writeCSSFile(self):
+        print("Writing CSS File...")
 
     def readFile():
         f = open('index.html')

@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter.colorchooser import askcolor
+from writeHTML import *
 
 # Used https://customtkbuilder.com/
 
@@ -105,20 +106,11 @@ class CreatePage:
         hobbies = self.checkHobbies()
         if name and hobbies:
             self.errorLabel.destroy()
-            self.writeHTMLFile()
+            writeHTMLFile(name, hobbies)
             self.writeCSSFile()
 
     # ~~~~~~~~~~~~ Writing File Functions ~~~~~~~~~~~~~~~
-    def writeHTMLFile(self):
-        print("Writing HTML File...")
-        # with open('index.html', 'r+') as f:
-        #     sent1 = f.readline()
-        #     sent2 = f.readline()
-        #     f.write('\n')
-        #     f.write('<html></html>')
-        # OR ...
-        # f = open('index.html') # open html file
-        # f.close()
+    # ~~~~ See writeHTML.py file
 
     def writeCSSFile(self):
         print("Writing CSS File...")

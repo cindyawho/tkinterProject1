@@ -1,0 +1,34 @@
+* {
+    box-sizing: border-box;
+}
+
+body{
+    background: #affde3;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 20px;
+}
+
+h1{
+    background-color: #002ba1;
+    color: #affde3;
+    margin: 20px auto;
+    width: fit-content;
+    padding: 20px 70px;
+    border-radius: 20px;
+    animation-name: slideDown;
+    animation-duration: 5s;
+}
+
+.hobbies h2, .hobbies p, .hobbies ul {
+    width: fit-content;
+    margin: 20px auto;
+}
+
+@keyframes slideDown {
+    from {
+        margin: -70px auto;
+    }
+    to {
+        margin: 20px auto;
+    }
+}

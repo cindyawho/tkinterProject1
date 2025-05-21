@@ -63,7 +63,9 @@ class CreatePage:
         self.fontsCombobox.grid(row=7, column=1, columnspan=3, pady=20, padx=20)
 
         self.submitButton = ttk.Button(self.root, text="Create my Website!", command=self.createWebsite)
-        self.submitButton.grid(row=8, column=0,columnspan=5, padx=20, pady=20)
+        self.submitButton.grid(row=8, column=0, columnspan=5, padx=20, pady=20)
+        self.errorLabel = ttk.Label(self.root, text="")
+        self.errorLabel.grid(row=9, column=0, columnspan=5, pady=20, padx=20)
 
     # ~~~~~~~~~~~~ Form Functions ~~~~~~~~~~~~~~~
     # color picker
@@ -80,9 +82,31 @@ class CreatePage:
         else:
             print("User will input their CSS Choices")
 
+    # Error Handling for Empty HTML Inputs
+    def checkName(self):
+        userName = self.nameEntry.get()
+        if userName == "":
+            self.errorLabel.config(text="Error: Please Enter a Name.", foreground="red", font=("Arial", 14))
+            return False
+        else:
+            return userName
+        
+    def checkHobbies(self):
+        hobbies = self.hobbiesEntry.get()
+        if hobbies == "":
+            self.errorLabel.config(text="Error: Please Enter your Hobbies.", foreground="red", font=("Arial", 14))
+            return False
+        else:
+            return hobbies
+
+    # Call error handling functions and write files
     def createWebsite(self):
-        self.writeHTMLFile()
-        self.writeCSSFile()
+        name = self.checkName()
+        hobbies = self.checkHobbies()
+        if name and hobbies:
+            self.errorLabel.destroy()
+            self.writeHTMLFile()
+            self.writeCSSFile()
 
     # ~~~~~~~~~~~~ Writing File Functions ~~~~~~~~~~~~~~~
     def writeHTMLFile(self):

@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter.colorchooser import askcolor
 from writeHTML import *
+from writeCSS import *
 
 # Used https://customtkbuilder.com/
 
@@ -50,6 +51,7 @@ class CreatePage:
         self.checkbox.grid(row=5, column=0, columnspan=5, pady=20, padx=20)
 
         # User Inputs for CSS
+        self.bgColorVar = tk.StringVar(self.root, "")
         self.bgColorLabel = ttk.Label(self.root, text="Background: ", style="text.TLabel")
         self.bgColorLabel.grid(row=6, column=0, columnspan=2, pady=20, padx=20)
         self.bgColorButton = ttk.Button(self.root, text='Select a BackgroundColor', command=self.changeColor)
@@ -74,6 +76,7 @@ class CreatePage:
         colors = askcolor(title="Tkinter Color Chooser")
         # print(colors)
         self.colorLabel.configure(background=colors[1])
+        self.bgColorVar = colors[1]
 
     # default or user Styling
     def checkCSSChoice(self):
@@ -99,21 +102,38 @@ class CreatePage:
             return False
         else:
             return hobbies
+        
+    def checkBGColor(self):
+        bgColor = self.bgColorVar
+        print(bgColor)
+        if bgColor == "":
+            return False
+        else:
+            return bgColor
+    
+    def checkFont(self):
+        font = self.fontsCombobox.get()
+        print(font)
+        if font == "":
+            return False
+        else:
+            return font
 
     # Call error handling functions and write files
     def createWebsite(self):
         name = self.checkName()
         hobbies = self.checkHobbies()
+        bgColor = self.checkBGColor()
+        fontFamily = self.checkFont()
+
         if name and hobbies:
             self.errorLabel.destroy()
             writeHTMLFile(name, hobbies)
-            self.writeCSSFile()
+            writeCSSFile(bgColor, fontFamily)
 
     # ~~~~~~~~~~~~ Writing File Functions ~~~~~~~~~~~~~~~
     # ~~~~ See writeHTML.py file
-
-    def writeCSSFile(self):
-        print("Writing CSS File...")
+    # ~~~~ See writeCSSL.py file
 
     def readFile():
         f = open('index.html')
